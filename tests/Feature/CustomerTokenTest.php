@@ -9,10 +9,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 
-class SearchOrderTest extends TestCase
+class CustomerTokenTest extends TestCase
 {
     use RefreshDatabase;
-    
 
     protected function getAccountCode(){
         $account = Account::create([
@@ -37,40 +36,20 @@ class SearchOrderTest extends TestCase
         ]);
         return $accountSetting->code;
     }
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function test_if_search_url_is_valid()
-    {
-        
+
+    public function test_customer_token_get_url(){
         $code = $this->getAccountCode();
-        $response = $this->get("/{$code}");
+        $response = $this->get("/{$code}/customer/token");
         $response->assertStatus(200);
     }
 
-
-    public function test_valid_order_response(){
+    public function test_customer_token_post_url(){
         $code = $this->getAccountCode();
-        $response = $this->post("/api/{$code}/v1/orders/get", [
-            'email' => 'xmaz2023@gmail.com',
-            'order_number' => '303311'
+        $response = $this->post("/{$code}/customer/token", [
+            'email' => 'test@gmail.com'
         ]);
-        $response->assertStatus(200)->assertJson([
-            'success' => true,
-        ]);
-        
+        $response->assertStatus(200);
     }
 
-    public function test_invalid_order_response(){
-        $code = $this->getAccountCode();
-        $response = $this->post("/api/{$code}/v1/orders/get", [
-            'email' => 'xmaz2023@gmail.com',
-            'order_number' => 'A303311'
-        ]);
-        $response->assertStatus(200)->assertJson([
-            'error' => true,
-        ]);
-    }
 }
+    

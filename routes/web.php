@@ -21,7 +21,6 @@ Route::group(['prefix' => '/{code?}', 'middleware' => AccountCode::class], funct
     Route::get('/', [AppController::class, 'showOrderSearch'])->name('orders.search');
     Route::post('/customer/token', [AppController::class, 'setCustomerToken'])->name('customers.token');
     Route::get('/customer/token', [AppController::class, 'removeCustomerToken'])->name('customers.token');
-    Route::post('/orders/email', [AppController::class, 'sendOrderEmail'])->name('orders.email');
     Route::get('/orders/token/{token}', [AppController::class, 'getOrderByToken'])->name('orders.token');
     Route::middleware([CustomerToken::class])->group(function(){
         Route::get('/orders/review', [AppController::class, 'showOrderReview'])->name('orders.review');

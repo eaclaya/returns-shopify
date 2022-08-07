@@ -96,7 +96,9 @@ class AppController extends Controller
 		if($request->email){
 			Session::put('CUSTOMER_TOKEN', $request->email);
 			Session::put('ACCOUNT_ID', 1);
+			return response()->json(['success' => true, 'msg' => 'Customer token set.']);
 		}
+		return response()->json(['error' => 'Customer token not set.']);
 	}
 
 	public function removeCustomerToken(Request $request){
