@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class AccountSetting extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'name',
+        'account_id',
+        'code',
+    ];
     public function account(){
         return $this->belongsTo(Account::class);
     }
