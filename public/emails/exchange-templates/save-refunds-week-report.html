@@ -1,0 +1,161 @@
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="padding:0;">
+  <center>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0"
+      style="border-collapse:collapse; background-color:#ffffff">
+      <tbody>
+        <tr>
+          <td valign="top" align="center"> </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center">
+
+            <table width="100%" cellspacing="0" cellpadding="0" border="0"
+              style="border-collapse:collapse;background-color:#fff;border-top:0;border-bottom:0">
+              <tbody>
+                <tr>
+                  <td valign="top" align="center">
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="width:100%; background:#fff;">
+              <div style="width:550px; min-width:550px; margin:0 auto 0px"><a href="https://www.mottandbow.com"><img
+                    src="https://gallery.mailchimp.com/d78c156f8af2503d756c98d1f/images/3990fba1-58d9-4a29-a06b-3f5d10c882ba.png"
+                    alt="Mott & Bow" style="border:none;width:550px"></a>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" align="center">
+
+            <table width="550" cellspacing="0" cellpadding="0" border="0" align="center"
+              style="background-color:#FAFAFA; ; border-collapse:collapse; background: -moz-linear-gradient(top,  #e9e9e9 0%, #fafafc 17%, #fafafc 100%); background: -webkit-linear-gradient(top,  #e9e9e9 0%,#fafafc 17%,#fafafc 100%); background: linear-gradient(to bottom,  #e9e9e9 0%,#fafafc 17%,#fafafc 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9e9e9', endColorstr='#fafafc',GradientType=0 );">
+
+
+
+              <tbody>
+                <tr>
+
+                  <td valign="top"
+                    style="padding-top:9px;padding-right:18px;padding-bottom:9px;padding-left:18px;color:#606060;font-family:Helvetica;letter-spacing:1px; font-size:11px;line-height:125%;text-align:left">
+
+                    <div
+                      style="border-top: solid 0px #dddddd; height: 50px; margin-bottom: 10px; margin-top: 0px; text-align: center;">
+                      <img align="none"
+                        src="https://gallery.mailchimp.com/d78c156f8af2503d756c98d1f/images/fe0b3f0b-d8bc-4ac4-b42a-a9575b4e9c6f.png"
+                        style=" margin: 0px;"></div>
+
+                    <div style="clear:both;"> </div>
+
+
+
+                    <table style='border: 1px solid gray'>
+                      <thead>
+                        <tr>
+                          <th style='border: 1px solid gray'>ORDER #</th>
+                          <th style='border: 1px solid gray'>GRAND TOTAL</th>
+                          <th style='border: 1px solid gray'>ORIGINAL TOTAL REFUND</th>
+                          <th style='border: 1px solid gray'>FIRST REQUEST REFUND</th>
+                          <th style='border: 1px solid gray'>TOTAL REQUEST REFUND AMOUNT</th>
+                          <th style='border: 1px solid gray'>TOTAL REQUEST REFUND APPROVED</th>
+                          <th style='border: 1px solid gray'>TOTAL REQUEST REFUND EXPIRED</th>
+                          <th style='border: 1px solid gray'>TOTAL REQUEST REFUND OVERRIDE</th>
+                          <th style='border: 1px solid gray'>TOTAL EXCHANGE AMOUNT</th>
+                          <th style='border: 1px solid gray'>TOTAL EXCHANGE APPROVED</th>
+                          <th style='border: 1px solid gray'>TOTAL EXCHANGE OVERRIDE</th>
+                          <th style='border: 1px solid gray'>WEEK</th>
+                          <th style='border: 1px solid gray'>CREATED_AT</th>
+                        </tr>
+                      </thead>
+                      <tbody>";
+
+
+                        <?php
+
+   foreach($result as $item) 
+   {
+      
+
+      ?>
+
+
+                        <tr>
+                          <td style='border: 1px solid gray'><?php  echo $item['original_increment_id']; ?></td>
+                          <td style='border: 1px solid gray'><?php  echo $item['original_grand_total']; ?></td>
+                          <td style='border: 1px solid gray'><?php  echo $item['original_total_refund']; ?></td>
+                          <td style='border: 1px solid gray'><?php  echo $item['first_request_refund']; ?></td>
+                          <td style='border: 1px solid gray'><?php  echo $item['total_request_amount']; ?></td>
+                          <td style='border: 1px solid gray'><?php  echo $item['total_request_approved']; ?></td>
+                          <td style='border: 1px solid gray'><?php  echo $item['total_request_expired']; ?></td>
+                          <td style='border: 1px solid gray'><?php  echo $item['total_request_override']; ?></td>
+                          <td style='border: 1px solid gray'><?php  echo $item['total_exchanges_request_amount']; ?>
+                          </td>
+                          <td style='border: 1px solid gray'><?php  echo $item['total_exchanges_request_approved']; ?>
+                          </td>
+                          <td style='border: 1px solid gray'><?php  echo $item['total_exchanges_request_override']; ?>
+                          </td>
+                          <td style='border: 1px solid gray'><?php  echo $item['request_yearweek']; ?></td>
+                          <td style='border: 1px solid gray'><?php  echo $item['created_at']; ?></td>
+
+                        </tr>
+
+
+
+                        <tr>
+                          <td style='border: 1px solid gray'><strong>TOTALs</strong></td>
+                          <td style='border: 1px solid gray'>
+                            <strong><?php  echo $totals['totals_original_grand_total']; ?></strong></td>
+                          <td style='border: 1px solid gray'>
+                            <strong><?php  echo $totals['totals_original_total_refund']; ?></strong></td>
+                          <td style='border: 1px solid gray'>
+                            <strong><?php  echo $totals['totals_first_request_refund']; ?></strong></td>
+                          <td style='border: 1px solid gray'>
+                            <strong><?php  echo $totals['totals_total_request_amount']; ?></strong></td>
+                          <td style='border: 1px solid gray'>
+                            <strong><?php  echo $totals['totals_total_request_approved']; ?></strong></td>
+                          <td style='border: 1px solid gray'>
+                            <strong><?php  echo $totals['totals_total_request_expired']; ?></strong></td>
+                          <td style='border: 1px solid gray'>
+                            <strong><?php  echo $totals['totals_total_request_override']; ?></strong></td>
+                          <td style='border: 1px solid gray'>
+                            <strong><?php  echo $totals['totals_total_exchanges_request_amount']; ?></strong></td>
+                          <td style='border: 1px solid gray'>
+                            <strong><?php  echo $totals['totals_total_exchanges_request_approved']; ?></strong></td>
+                          <td style='border: 1px solid gray'>
+                            <strong><?php  echo $totals['totals_total_exchanges_request_override']; ?></strong></td>
+                          <td style='border: 1px solid gray'></td>
+                          <td style='border: 1px solid gray'></td>
+
+                        </tr>
+
+                        <?php  } ?>
+                      </tbody>
+                    </table>
+
+
+                    <div style="text-align: center;"><em>Copyright © 2015, All rights reserved.</em><br>
+                      <br>
+                      Mott & Bow<br>
+                      69 Charlton St<br>
+                      New York, NY 10014<br>
+                      <br>
+
+                      <br></div>
+
+
+
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+
+
+</body>

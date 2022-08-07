@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+  webserver: 
+    image: nginx:alpine
+    container_name: nginx_container_front
+    restart: unless-stopped
+    tty: true
+    ports: 
+      - "8009:81"
+      - "442:443"
+    volumes: 
+      - ./:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    depends_on:
+      - php
+    networks:
+      - laravel_front
+  
+  php:
+    build:
+      context: .
+      dockerfile: dockerfile
+    image: digitalocean.com/php
+    container_name: php_container_front
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_TAGS: dev
+      SERVICE_NAME: php
+    working_dir: /var/www
+    volumes: 
+      - ./:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - laravel_front
+
+networks:
+  laravel_front:
+    driver: bridge
