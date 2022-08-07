@@ -36,6 +36,7 @@ return [
     'shopify' => [
     	'key' => env('SHOPIFY_KEY', ''),
     	'host' => env('SHOPIFY_HOST', ''),
+        'code' => env('SHOPIFY_CODE', ''),
         'password' => env('SHOPIFY_PASSWORD', ''),
         'version' => env('SHOPIFY_VERSION', '')
     ]

@@ -22,6 +22,7 @@ class SearchOrderTest extends TestCase
             'domain' => config('services.shopify.host'),
         ]);
         $accountSetting = AccountSetting::create([
+            'name' => config('services.shopify.host'),
             'account_id' => $account->id,
             'code' => config('services.shopify.code'),
         ]);
