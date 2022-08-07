@@ -40,4 +40,14 @@ class SearchOrderTest extends TestCase
         $response = $this->get("/{$code}");
         $response->assertStatus(200);
     }
+
+
+    public function test_valid_order_search_on_shopify(){
+        $code = $this->getAccountCode();
+        $response = $this->post("/api/{$code}/v1/orders/get", [
+            'email' => 'xmaz2023@gmail.com',
+            'order' => '303311'
+        ]);
+        $response->assertStatus(200);
+    }
 }
