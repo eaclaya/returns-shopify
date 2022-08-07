@@ -34,10 +34,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'shopify' => [
-    	'key' => env('SHOPIFY_KEY', ''),
-    	'host' => env('SHOPIFY_HOST', ''),
-        'code' => env('SHOPIFY_CODE', ''),
-        'password' => env('SHOPIFY_PASSWORD', ''),
-        'version' => env('SHOPIFY_VERSION', '')
+    	'key' => env('SHOPIFY_KEY'),
+    	'host' => env('SHOPIFY_HOST'),
+        'shop' => env('SHOPIFY_SHOP'),
+        'code' => env('SHOPIFY_CODE'),
+        'password' => env('SHOPIFY_PASSWORD'),
+        'version' => env('SHOPIFY_VERSION')
     ]
 ];

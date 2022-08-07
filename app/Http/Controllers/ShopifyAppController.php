@@ -36,6 +36,7 @@ class ShopifyAppController extends Controller
 		}
 		
 		$session = Utils::getAccountSession($code);
+		
 		$accountId = Utils::getAccountId($code);
 		$accountSetting = AccountSetting::where('account_id', $accountId)->firstOrFail();
 		$orderNumber = str_replace('#', '', strtoupper($request->order_number));
@@ -74,20 +75,19 @@ class ShopifyAppController extends Controller
 				$this->productRepo->saveProduct($product);
 			}
 		}
-		$isAdmin = DB::table('admin_ips')->where('remote_ip', $_SERVER['REMOTE_ADDR'])->first();
-		$isAdmin = $isAdmin ? true : false;
-		if(!$isAdmin){
-			$dayThreshold = $accountSetting && intval($accountSetting->day_threshold) > 0 ? intval($accountSetting->day_threshold) : 100;
-			if($order['fulfillment_status'] != 'fulfilled' ){ return ['error' => true, 'msg' => 'This order is not fulfilled. Error: 503']; }
-			if((time() - strtotime($order['processed_at']))/(60 * 60 * 24) > $dayThreshold){ return ['error' => true, 'msg' => 'This is order is not valid for exchange/refund. Error: 505']; }
-		}
+		
+		$dayThreshold = $accountSetting && intval($accountSetting->day_threshold) > 0 ? intval($accountSetting->day_threshold) : 100;
+		if($order['fulfillment_status'] != 'fulfilled' ){ return ['error' => true, 'msg' => 'This order is not fulfilled. Error: 503']; }
+		if((time() - strtotime($order['processed_at']))/(60 * 60 * 24) > $dayThreshold){ return ['error' => true, 'msg' => 'This is order is not valid for exchange/refund. Error: 505']; }
+		
 		$currencies = cache('currencies') ? cache('currencies') : [];
 		if(isset($currencies[$order['currency']])){
 			$order['currency'] = $currencies[$order['currency']]['symbol'];
 		}
 		$payload = ['order_id' => $order['id'], 'name' => $order['name'], 'order_number' => $order['order_number'], 'customer_email' => $order['email'], 'customer_id' => $order['customer']['id'], 'account_id' => $accountId, 'code' => $code];
 		ShopifyOrderLoaded::dispatch($payload);
-		return ['success' => true, 'url' => route('orders.review'), 'response' => $order];
+
+		return response()->json(['success' => true, 'url' => route('orders.review'), 'response' => $order]);
 	}
 
 	public function getDiscountRule(Request $request, $code){

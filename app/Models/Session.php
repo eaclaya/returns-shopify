@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Session extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'session_id',
+        'shop',
+        'is_online',
+        'access_token',
+        'state'
+    ];
 }

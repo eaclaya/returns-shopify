@@ -36,9 +36,6 @@ class HandleInertiaRequests extends Middleware
         $settings = is_array(cache('accountSettings'))  ? cache('accountSettings') : [];
         $settings = isset($settings[$request->route('code')]) ? $settings[$request->route('code')] : null;
         if($settings){
-            if($settings['account'] && $settings['account']['logo']){
-                $settings['account']['logo'] = "http://localhost:8001".$settings['account']['logo'];
-            }
             $settings['account']['domain'] = "https://".$settings['account']['domain'];
         }
         return array_merge(parent::share($request), [
